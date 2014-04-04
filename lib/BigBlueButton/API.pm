@@ -1,0 +1,93 @@
+package BigBlueButton::API;
+
+=encoding utf-8
+
+=head1 NAME
+
+BigBlueButton::API
+
+=head1 SYNOPSIS
+
+    use BigBlueButton::API;
+
+=head1 DESCRIPTION
+
+BigBlueButton::API is API for BBB
+
+=cut
+
+use 5.008005;
+use strict;
+use warnings;
+
+use Carp qw/ confess /;
+use LWP::UserAgent;
+
+use BigBlueButton::API::Response;
+
+use base qw/ BigBlueButton::API::Requests /;
+
+use constant REQUIRE_PARAMS => qw/ secret server /;
+
+our $VERSION = "0.01";
+
+sub new {
+    my $class = shift;
+
+    $class = ref $class || $class;
+
+    my $self = {
+        timeout => 30,
+        secret  => '',
+        server  => '',
+        use_https => 0,
+        (@_),
+    };
+
+    for my $need_param ( REQUIRE_PARAMS ) {
+        confess "Parameter $need_param required!" unless $self->{ $need_param };
+    }
+
+    return bless $self, $class;
+}
+
+sub abstract_request {
+    my ( $self, $data ) = @_;
+
+    my $request = delete $data->{request};
+    confess "Parameter request required!" unless $request;
+
+    my $url = $self->{use_https} ? 'https://' : 'http://';
+    $url .= $self->{server} . '/bigbluebutton/api/' . $request . '?';
+
+    for my $param ( keys %{ $data } ) {
+        $url .= '&' . $param . '=' . $data->{ $param };
+    }
+
+    my $ua = LWP::UserAgent->new;
+
+    $ua->ssl_opts(verify_hostname => 0) if $self->{use_https};
+    $ua->timeout( $self->{ timeout } );
+
+    my $res = $ua->get( $url );
+
+    return BigBlueButton::API::Response->new( $res );
+}
+
+
+1;
+__END__
+
+=head1 LICENSE
+
+Copyright (C) Alexander Ruzhnikov.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 AUTHOR
+
+Alexander Ruzhnikov E<lt>ruzhnikov85@gmail.comE<gt>
+
+=cut
+

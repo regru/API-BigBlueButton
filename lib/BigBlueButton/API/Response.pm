@@ -6,6 +6,8 @@ use warnings;
 
 use XML::Fast;
 
+our $VERSION = "0.01";
+
 sub new {
     my ( $class, $res ) = @_;
 

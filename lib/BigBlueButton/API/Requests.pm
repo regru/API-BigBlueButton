@@ -115,7 +115,7 @@ sub generate_checksum {
 }
 
 sub _generate_data {
-    my ( $self, $request, $params );
+    my ( $self, $request, $params ) = @_;
 
     $self->_check_params( $request, $params );
     $params->{checksum} = $self->generate_checksum( $request, $params );
@@ -130,7 +130,7 @@ sub _check_params {
     my $const = 'REQUIRE_' . uc $request . '_PARAMS';
     return unless $self->$const;
 
-    for my $req_param ( $self->$const ) {
+    for my $req_param ( @{ $self->$const } ) {
         confess "Parameter $req_param required!" unless $params->{ $req_param };
     }
 

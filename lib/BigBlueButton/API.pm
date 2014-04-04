@@ -58,10 +58,11 @@ sub abstract_request {
     confess "Parameter request required!" unless $request;
 
     my $url = $self->{use_https} ? 'https://' : 'http://';
-    $url .= $self->{server} . '/bigbluebutton/api/' . $request . '?';
+    $url .= $self->{server} . '/bigbluebutton/api/' . $request;
 
-    for my $param ( keys %{ $data } ) {
-        $url .= '&' . $param . '=' . $data->{ $param };
+    if ( scalar keys %{ $data } > 0 ) {
+        $url .= '?';
+        $url .= join( '&', map { "$_=$data->{$_}" } keys %{ $data } );
     }
 
     my $ua = LWP::UserAgent->new;

@@ -104,9 +104,7 @@ sub generate_checksum {
     my $string = $request;
 
     if ( $params ) {
-        for my $param ( keys %{ $params } ) {
-            $string .= '&' . $param . '=' . $params->{ $param };
-        }
+        $string .= CORE::join( '&', map { "$_=$params->{$_}" } keys %{ $params } );
     }
 
     $string .= $self->{secret};

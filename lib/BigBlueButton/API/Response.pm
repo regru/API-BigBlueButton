@@ -23,7 +23,7 @@ sub new {
             success  => $success,
             xml      => $xml,
             error    => $error,
-            response => $parsed_response->{xml_result},
+            response => $parsed_response->{response},
             status   => $status,
         }, $class
     );
@@ -41,6 +41,22 @@ sub success {
     return $self->{success};
 }
 
-# ...
+sub response {
+    my ( $self ) = @_;
+
+    return $self->{response};
+}
+
+sub error {
+    my ( $self ) = @_;
+
+    return $self->{error};
+}
+
+sub status {
+    my ( $self ) = @_;
+
+    return $self->{status};
+}
 
 1;

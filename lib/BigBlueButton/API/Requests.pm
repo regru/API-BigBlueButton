@@ -1,5 +1,11 @@
 package BigBlueButton::API::Requests;
 
+=head1 NAME
+
+BigBlueButton::API::Requests
+
+=cut
+
 use 5.008005;
 use strict;
 use warnings;
@@ -18,12 +24,12 @@ use constant {
     REQUIRE_SETCONFIGXML_PARAMS      => [ qw/ meetingID configXML / ],
 };
 
-=head1 NAME
 
-BigBlueButton::API::Requests
+=head1 METHODS
 
+=over
 
-=method B<get_version($self)>
+=item B<get_version($self)>
 
 Getting the current version of the BigBlueButton
 
@@ -38,7 +44,7 @@ sub get_version {
     return $self->request( $url );
 }
 
-=method B<create($self,%params)>
+=item B<create($self,%params)>
 
 Create a meeting
 
@@ -96,7 +102,7 @@ logoutURL
 record
     
     This parameter is optional.
-    Setting ‘record=true’ instructs the BigBlueButton server to record the media and
+    Setting 'record=true' instructs the BigBlueButton server to record the media and
     events in the session for later playback. Available values are true or false.
     Default value is false.
 
@@ -125,6 +131,7 @@ redirectClient
     The third party app is responsible for displaying the client to the user.
 
 clientURL
+
     This parameter is optional.
     Some third party apps what to display their own custom client.
     These apps can pass the URL containing the custom client and when redirectClient
@@ -254,5 +261,9 @@ sub _check_params {
 
     return 1;
 }
+
+=back
+
+=cut
 
 1;

@@ -1,6 +1,6 @@
 # NAME
 
-BigBlueButton::API - It's new $module
+BigBlueButton::API
 
 # SYNOPSIS
 
@@ -8,15 +8,15 @@ BigBlueButton::API - It's new $module
 
 # DESCRIPTION
 
-BigBlueButton::API is ...
+BigBlueButton::API is module for work with API BBB
 
-# LICENSE
+# LICENSE AND COPYRIGHT
 
-Copyright (C) Alexander Ruzhnikov.
+This software is copyright (c) 2014 by REG.RU LLC.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 # AUTHOR
 
-Alexander Ruzhnikov <ruzhnikov85@gmail.com>
+Alexander Ruzhnikov <a.ruzhnikov@reg.ru>

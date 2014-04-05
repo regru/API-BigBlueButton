@@ -55,15 +55,23 @@ sub abstract_request {
     my ( $self, $data ) = @_;
 
     my $request = delete $data->{request};
+    my $checksum = delete $data->{checksum};
     confess "Parameter request required!" unless $request;
 
     my $url = $self->{use_https} ? 'https://' : 'http://';
-    $url .= $self->{server} . '/bigbluebutton/api/' . $request;
+    $url .= $self->{server} . '/bigbluebutton/api/' . $request . '?';
 
     if ( scalar keys %{ $data } > 0 ) {
-        $url .= '?';
-        $url .= join( '&', map { "$_=$data->{$_}" } keys %{ $data } );
+        $url .= $self->generate_url_query( $data );
+        $url .= '&';
     }
+    $url .= 'checksum=' . $checksum;
+
+    return $self->request( $url );
+}
+
+sub request {
+    my ( $self, $url ) = @_;
 
     my $ua = LWP::UserAgent->new;
 
@@ -75,8 +83,8 @@ sub abstract_request {
     return BigBlueButton::API::Response->new( $res );
 }
 
-
 1;
+
 __END__
 
 =head1 LICENSE

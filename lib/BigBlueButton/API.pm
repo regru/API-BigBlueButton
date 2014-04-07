@@ -10,6 +10,16 @@ BigBlueButton::API
 
     use BigBlueButton::API;
 
+    my $bbb = BigBlueButton::API->new( server => 'bbb.myhost', secret => '1234567890' );
+    my $res = $bbb->get_version;
+
+    if ( $response->success ) {
+        my $version = $res->response->version
+    }
+    else {
+        warn "Error occured: " . $res->error . ", Status: " . $res->status;
+    }
+
 =head1 DESCRIPTION
 
 BigBlueButton::API is API for BBB
@@ -86,13 +96,6 @@ sub request {
 1;
 
 __END__
-
-=head1 LICENSE
-
-Copyright (C) Alexander Ruzhnikov.
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
 
 =head1 AUTHOR
 

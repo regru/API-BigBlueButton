@@ -16,14 +16,14 @@ sub new {
     my $error     = $success ? '' : $res->decoded_content;
     my $status    = $res->status_line;
 
-    my $parsed_response = $xml ? xml2hash( $xml ) : {};
+    my $parsed_response = $xml ? xml2hash( $xml, attr => '' ) : {};
 
     return bless(
         {
             success  => $success,
             xml      => $xml,
             error    => $error,
-            response => $parsed_response->{response},
+            response => $parsed_response->{response} ? $parsed_response->{response} : $parsed_response,
             status   => $status,
         }, $class
     );

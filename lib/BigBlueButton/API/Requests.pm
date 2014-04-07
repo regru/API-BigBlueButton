@@ -177,10 +177,7 @@ sub getmeetinginfo {
 sub getmeetings {
     my ( $self ) = @_;
 
-    my $data = {};
-    $data->{request}  = 'getMeetings';
-    $data->{checksum} = $self->generate_checksum( $data->{request} );
-
+    my $data = $self->_generate_data( 'getMeetings' );
     return $self->abstract_request( $data );
 }
 
@@ -206,9 +203,9 @@ sub deleterecordings {
 }
 
 sub getdefaultconfigxml {
-    my ( $self, %params ) = @_;
+    my ( $self ) = @_;
 
-    my $data = $self->_generate_data( 'getDefaultConfigXML', \%params );
+    my $data = $self->_generate_data( 'getDefaultConfigXML' );
     return $self->abstract_request( $data );
 }
 
@@ -223,7 +220,7 @@ sub generate_checksum {
     my ( $self, $request, $params ) = @_;
 
     my $string = $request;
-    $string .= $self->generate_url_query( $params ) if $params;
+    $string .= $self->generate_url_query( $params ) if ( $params && ref $params );
     $string .= $self->{secret};
 
     return sha1_hex( $string );
@@ -231,8 +228,6 @@ sub generate_checksum {
 
 sub generate_url_query {
     my ( $self, $params ) = @_;
-
-    return unless ( $params or ref $params );
 
     my $string = CORE::join( '&', map { "$_=$params->{$_}" } sort keys %{ $params } );
 
@@ -242,7 +237,7 @@ sub generate_url_query {
 sub _generate_data {
     my ( $self, $request, $params ) = @_;
 
-    $self->_check_params( $request, $params );
+    $self->_check_params( $request, $params ) if $params;
     $params->{checksum} = $self->generate_checksum( $request, $params );
     $params->{request}  = $request;
 
@@ -253,7 +248,7 @@ sub _check_params {
     my ( $self, $request, $params ) = @_;
 
     my $const = 'REQUIRE_' . uc $request . '_PARAMS';
-    return unless $self->$const;
+    return unless $self->can( $const );
 
     for my $req_param ( @{ $self->$const } ) {
         confess "Parameter $req_param required!" unless $params->{ $req_param };

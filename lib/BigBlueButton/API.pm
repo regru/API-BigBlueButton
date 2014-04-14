@@ -26,12 +26,12 @@ BigBlueButton::API is API for BBB
 
 =cut
 
-use 5.008005;
+use 5.008008;
 use strict;
 use warnings;
 
 use Carp qw/ confess /;
-use LWP::UserAgent;
+use LWP::UserAgent '6.05';
 
 use BigBlueButton::API::Response;
 
@@ -40,6 +40,33 @@ use base qw/ BigBlueButton::API::Requests /;
 use constant REQUIRE_PARAMS => qw/ secret server /;
 
 our $VERSION = "0.01";
+
+=head1 METHODS
+
+=over
+
+=item B<new(%param)>
+
+Constructor
+
+%param:
+
+server
+
+    Ip-address or hostname in which the server is located. Required parameter.
+
+secret
+
+    Shared secret. Required parameter.
+
+timeout
+
+    Connection timeout. Optional parameter.
+
+use_https
+
+    Use/not use https. Optional parameter.
+=cut
 
 sub new {
     my $class = shift;

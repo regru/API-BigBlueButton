@@ -6,7 +6,7 @@ BigBlueButton::API::Requests
 
 =cut
 
-use 5.008005;
+use 5.008008;
 use strict;
 use warnings;
 

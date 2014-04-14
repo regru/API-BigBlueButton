@@ -1,6 +1,6 @@
 package BigBlueButton::API::Response;
 
-use 5.008005;
+use 5.008008;
 use strict;
 use warnings;
 

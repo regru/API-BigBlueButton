@@ -1,14 +1,24 @@
 # NAME
 
-BigBlueButton::API
+API::BigBlueButton
 
 # SYNOPSIS
 
-    use BigBlueButton::API;
+    use API::BigBlueButton;
+
+    my $bbb = API::BigBlueButton->new( server => 'bbb.myhost', secret => '1234567890' );
+    my $res = $bbb->get_version;
+
+    if ( $response->success ) {
+        my $version = $res->response->version
+    }
+    else {
+        warn "Error occured: " . $res->error . ", Status: " . $res->status;
+    }
 
 # DESCRIPTION
 
-BigBlueButton::API is module for work with API BBB
+API::BigBlueButton is module for work with API BBB
 
 # LICENSE AND COPYRIGHT
 

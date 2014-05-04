@@ -23,8 +23,8 @@ my %args = (
         'Module::Build' => 0.38,
     },
 
-    name            => 'BigBlueButton-API',
-    module_name     => 'BigBlueButton::API',
+    name            => 'API-BigBlueButton',
+    module_name     => 'API::BigBlueButton',
     allow_pureperl => 0,
 
     script_files => [glob('script/*'), glob('bin/*')],

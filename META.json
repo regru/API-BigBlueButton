@@ -1,18 +1,18 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "It's API for BBB",
    "author" : [
-      "Alexander Ruzhnikov <ruzhnikov85@gmail.com>"
+      "Alexander Ruzhnikov <a.ruzhnikov@reg.ru>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v0.13.0, CPAN::Meta::Converter version 2.120921",
    "license" : [
-      "perl_5"
+      "GPLv1"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
       "version" : "2"
    },
-   "name" : "BigBlueButton-API",
+   "name" : "API-BigBlueButton",
    "no_index" : {
       "directory" : [
          "t",
@@ -30,7 +30,11 @@
          "requires" : {
             "CPAN::Meta" : "0",
             "CPAN::Meta::Prereqs" : "0",
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.38",
+            "LWP::UserAgent" : "6.05",
+            "Carp" : "0",
+            "Digest::SHA1" : "0",
+            "XML::Fast" : "0"
          }
       },
       "develop" : {
@@ -43,7 +47,7 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008005"
+            "perl" : "5.008008"
          }
       },
       "test" : {

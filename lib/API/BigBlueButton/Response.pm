@@ -1,4 +1,4 @@
-package BigBlueButton::API::Response;
+package API::BigBlueButton::Response;
 
 use 5.008008;
 use strict;

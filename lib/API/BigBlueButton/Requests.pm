@@ -1,8 +1,8 @@
-package BigBlueButton::API::Requests;
+package API::BigBlueButton::Requests;
 
 =head1 NAME
 
-BigBlueButton::API::Requests
+API::BigBlueButton::Requests
 
 =cut
 

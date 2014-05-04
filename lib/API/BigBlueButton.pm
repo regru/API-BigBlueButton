@@ -1,16 +1,16 @@
-package BigBlueButton::API;
+package API::BigBlueButton;
 
 =encoding utf-8
 
 =head1 NAME
 
-BigBlueButton::API
+API::BigBlueButton
 
 =head1 SYNOPSIS
 
-    use BigBlueButton::API;
+    use API::BigBlueButton;
 
-    my $bbb = BigBlueButton::API->new( server => 'bbb.myhost', secret => '1234567890' );
+    my $bbb = API::BigBlueButton->new( server => 'bbb.myhost', secret => '1234567890' );
     my $res = $bbb->get_version;
 
     if ( $response->success ) {
@@ -22,7 +22,7 @@ BigBlueButton::API
 
 =head1 DESCRIPTION
 
-BigBlueButton::API is API for BBB
+API::BigBlueButton is API for BBB
 
 =cut
 
@@ -33,9 +33,9 @@ use warnings;
 use Carp qw/ confess /;
 use LWP::UserAgent '6.05';
 
-use BigBlueButton::API::Response;
+use API::BigBlueButton::Response;
 
-use base qw/ BigBlueButton::API::Requests /;
+use base qw/ API::BigBlueButton::Requests /;
 
 use constant REQUIRE_PARAMS => qw/ secret server /;
 
@@ -117,7 +117,7 @@ sub request {
 
     my $res = $ua->get( $url );
 
-    return BigBlueButton::API::Response->new( $res );
+    return API::BigBlueButton::Response->new( $res );
 }
 
 1;

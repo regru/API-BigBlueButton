@@ -2,6 +2,10 @@ Revision history for Perl extension API-BigBlueButton
 
 {{$NEXT}}
 
+0.011 2014-05-07T13:29:22Z
+
+    - small fix
+
 0.01 2014-05-07T13:12:54Z
 
     - first release

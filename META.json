@@ -66,7 +66,7 @@
          "url" : "git://git.reg.ru/oss/api-bigbluebutton.git"
       }
    },
-   "version" : "0.01",
+   "version" : "0.011",
    "x_authority" : "cpan:BCDE",
    "x_contributors" : [
       "Alexander Ruzhnikov <ruzhnikov85@gmail.com>",

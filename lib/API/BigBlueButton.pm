@@ -13,7 +13,7 @@ API::BigBlueButton
     my $bbb = API::BigBlueButton->new( server => 'bbb.myhost', secret => '1234567890' );
     my $res = $bbb->get_version;
 
-    if ( $response->success ) {
+    if ( $res->success ) {
         my $version = $res->response->version
     }
     else {

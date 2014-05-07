@@ -61,12 +61,17 @@
    },
    "release_status" : "unstable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/regru/API-BigBlueButton/issues"
+      },
+      "homepage" : "https://github.com/regru/API-BigBlueButton",
       "repository" : {
          "type" : "git",
-         "url" : "git://git.reg.ru/oss/api-bigbluebutton.git"
+         "url" : "git://github.com/regru/API-BigBlueButton.git",
+         "web" : "https://github.com/regru/API-BigBlueButton"
       }
    },
-   "version" : "0.011",
+   "version" : "0.012",
    "x_authority" : "cpan:BCDE",
    "x_contributors" : [
       "Alexander Ruzhnikov <ruzhnikov85@gmail.com>",

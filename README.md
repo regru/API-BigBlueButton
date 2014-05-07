@@ -22,7 +22,7 @@ client for BigBlueButton API
 
 # VERSION
 
-version 0.011
+version 0.012
 
 # METHODS
 

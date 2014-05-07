@@ -22,7 +22,7 @@ API::BigBlueButton
 
 =head1 DESCRIPTION
 
-API::BigBlueButton is API for BBB
+API client for BBB
 
 =cut
 
@@ -40,6 +40,12 @@ use base qw/ API::BigBlueButton::Requests /;
 use constant REQUIRE_PARAMS => qw/ secret server /;
 
 our $VERSION = "0.01";
+
+=head1 VERSION
+ 
+version 0.01
+
+=cut
 
 =head1 METHODS
 
@@ -124,18 +130,18 @@ sub request {
 
 __END__
 
+=back
+
 =head1 SEE ALSO
 
 L<API::BigBlueButton::Requests>
 
 L<API::BigBlueButton::Response>
 
-L<https://code.google.com/p/bigbluebutton/wiki/API>
+L<BigBlueButton API|https://code.google.com/p/bigbluebutton/wiki/API>
 
 =head1 AUTHOR
 
 Alexander Ruzhnikov E<lt>a.ruzhnikov@reg.ruE<gt>
-
-=back
 
 =cut

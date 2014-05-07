@@ -2,7 +2,7 @@ package API::BigBlueButton::Requests;
 
 =head1 NAME
 
-API::BigBlueButton::Requests
+API::BigBlueButton::Requests - processing of API requests
 
 =cut
 
@@ -24,6 +24,13 @@ use constant {
     REQUIRE_SETCONFIGXML_PARAMS      => [ qw/ meetingID configXML / ],
 };
 
+our $VERSION = "0.01";
+
+=head1 VERSION
+ 
+version 0.01
+
+=cut
 
 =head1 METHODS
 
@@ -48,7 +55,7 @@ sub get_version {
 
 Create a meeting
 
-%param:
+%params:
 
 name
     
@@ -63,79 +70,52 @@ meetingID
 attendeePW
 
     This parameter is optional.
-    The password that will be required for attendees to join the meeting.
 
 moderatorPW
 
     This parameter is optional.
-    The password that will be required for moderators to join the meeting or for
-    certain administrative actions (i.e. ending a meeting).
 
 welcome
     
     This parameter is optional.
-    A welcome message that gets displayed on the chat window when the participant joins.
-    You can include keywords (%%CONFNAME%%, %%DIALNUM%%, %%CONFNUM%%) which
-    will be substituted automatically.
 
 dialNumber
 
     This parameter is optional.
-    The dial access number that participants can call in using regular phone.
 
 voiceBridge
 
     This parameter is optional.
-    Voice conference number that participants enter to join the voice conference.
 
 webVoice
 
     This parameter is optional.
-    Voice conference alphanumberic that participants enter to join the voice conference.
 
 logoutURL
 
     This parameter is optional.
-    The URL that the BigBlueButton client will go to after users click the OK button
-    on the 'You have been logged out message'.
 
 record
     
     This parameter is optional.
-    Setting 'record=true' instructs the BigBlueButton server to record the media and
-    events in the session for later playback. Available values are true or false.
-    Default value is false.
 
 duration
 
     This parameter is optional.
-    The duration parameter allows to specify the number of minutes for the meeting's length.
-    When the length of the meeting reaches the duration, BigBlueButton automatically ends the meeting.
 
 meta
 
     This parameter is optional.
-    You can pass one or more metadata values for create a meeting.
-    These will be stored by BigBlueButton and later retrievable via the getMeetingInfo call and
-    getRecordings. Examples of meta parameters are meta_Presenter, meta_category, meta_LABEL, etc.
-    All parameters are converted to lower case, so meta_Presenter would be the same as meta_PRESENTER.
 
 redirectClient
 
     This parameter is optional.
-    The default behaviour of the JOIN API is to redirect the browser to the Flash client when
-    the JOIN call succeeds. There have been requests if it's possible to embed the Flash client
-    in a "container" page and that the client starts as a hidden DIV tag which becomes visible
-    on the successful JOIN. Setting this variable to FALSE will not redirect the browser but
-    returns an XML instead whether the JOIN call has succeeded or not.
-    The third party app is responsible for displaying the client to the user.
 
 clientURL
 
     This parameter is optional.
-    Some third party apps what to display their own custom client.
-    These apps can pass the URL containing the custom client and when redirectClient
-    is not set to false, the browser will get redirected to the value of clientURL
+
+SEE MORE L<https://code.google.com/p/bigbluebutton/wiki/API#create>
 
 =cut
 
@@ -146,12 +126,80 @@ sub create {
     return $self->abstract_request( $data );
 }
 
+=item B<join($self,%params)>
+
+Joins a user to the meeting specified in the meetingID parameter.
+
+%params:
+
+fullName
+
+    This parameter is mandatory.
+    The full name that is to be used to identify this user to other conference attendees.
+
+meetingID
+
+    This parameter is mandatory.
+    The meeting ID that identifies the meeting you are attempting to join.
+
+password
+
+    This parameter is mandatory.
+    The password that this attendee is using. If the moderator password is supplied,
+    he will be given moderator status (and the same for attendee password, etc)
+
+createTime
+
+    This parameter is optional.
+
+userID
+
+    This parameter is optional.
+
+webVoiceConf
+
+    This parameter is optional.
+
+configToken
+
+    This parameter is optional.
+
+avatarURL
+
+    This parameter is optional.
+
+redirectClient
+
+    This parameter is optional.
+
+clientURL
+
+    This parameter is optional.
+
+SEE MORE L<https://code.google.com/p/bigbluebutton/wiki/API#join>
+
+=cut
+
 sub join {
     my ( $self, %params ) = @_;
 
     my $data = $self->_generate_data( 'join', \%params );
     return $self->abstract_request( $data );
 }
+
+=item B<ismeetingrunning($self,%params)>
+
+This call enables you to simply check on whether or not a meeting is running by
+looking it up with your meeting ID.
+
+%params:
+
+meetingID
+
+    This parameter is mandatory.
+    The meeting ID that identifies the meeting you are attempting to check on.
+
+=cut
 
 sub ismeetingrunning {
     my ( $self, %params ) = @_;
@@ -160,12 +208,50 @@ sub ismeetingrunning {
     return $self->abstract_request( $data );
 }
 
+=item B<end($self,%params)>
+
+Use this to forcibly end a meeting and kick all participants out of the meeting.
+
+%params:
+
+meetingID
+
+    This parameter is mandatory.
+    The meeting ID that identifies the meeting you are attempting to end.
+
+password
+
+    This parameter is mandatory.
+    The moderator password for this meeting. You can not end a meeting using the attendee password.
+
+=cut
+
 sub end {
     my ( $self, %params ) = @_;
 
     my $data = $self->_generate_data( 'end', \%params );
     return $self->abstract_request( $data );
 }
+
+=item B<getmeetinginfo($self,%params)>
+
+This call will return all of a meeting's information,
+including the list of attendees as well as start and end times.
+
+%params:
+
+meetingID
+
+    This parameter is mandatory.
+    The meeting ID that identifies the meeting you are attempting to check on.
+
+password
+
+    This parameter is mandatory.
+    The moderator password for this meeting.
+    You can not get the meeting information using the attendee password.
+
+=cut
 
 sub getmeetinginfo {
     my ( $self, %params ) = @_;
@@ -174,12 +260,30 @@ sub getmeetinginfo {
     return $self->abstract_request( $data );
 }
 
+=item B<getmeetings($self)>
+
+This call will return a list of all the meetings found on this server.
+
+=cut
+
 sub getmeetings {
     my ( $self ) = @_;
 
     my $data = $self->_generate_data( 'getMeetings' );
     return $self->abstract_request( $data );
 }
+
+=item B<getrecordings($self,%params)>
+
+Retrieves the recordings that are available for playback for a given meetingID (or set of meeting IDs).
+
+%params:
+
+meetingID
+
+    This parameter is optional.
+
+=cut
 
 sub getrecordings {
     my ( $self, %params ) = @_;
@@ -188,12 +292,45 @@ sub getrecordings {
     return $self->abstract_request( $data );
 }
 
+=item B<publishrecordings($self,%params)>
+
+Publish and unpublish recordings for a given recordID (or set of record IDs).
+
+%params:
+
+recordID
+
+    This parameter is mandatory.
+    A record ID for specify the recordings to apply the publish action.
+    It can be a set of record IDs separated by commas.
+
+publish
+
+    This parameter is mandatory.
+    The value for publish or unpublish the recording(s). Available values: true or false.
+
+=cut
+
 sub publishrecordings {
     my ( $self, %params ) = @_;
 
     my $data = $self->_generate_data( 'publishRecordings', \%params );
     return $self->abstract_request( $data );
 }
+
+=item B<deleterecordings($self,%params)>
+
+Delete one or more recordings for a given recordID (or set of record IDs).
+
+%params:
+
+recordID
+
+    This parameter is mandatory.
+    A record ID for specify the recordings to delete.
+    It can be a set of record IDs separated by commas.
+
+=cut
 
 sub deleterecordings {
     my ( $self, %params ) = @_;
@@ -202,6 +339,14 @@ sub deleterecordings {
     return $self->abstract_request( $data );
 }
 
+=item B<getdefaultconfigxml($self)>
+
+Retrieve the default config.xml.
+
+SEE MORE L<https://code.google.com/p/bigbluebutton/wiki/API#getDefaultConfigXML>
+
+=cut
+
 sub getdefaultconfigxml {
     my ( $self ) = @_;
 
@@ -209,12 +354,48 @@ sub getdefaultconfigxml {
     return $self->abstract_request( $data );
 }
 
+=item B<setconfigxml($self,%params)>
+
+Associate an custom config.xml file with the current session.
+
+%params:
+
+meetingID
+
+    This parameter is mandatory.
+    A meetingID to an active meeting.
+
+configXML
+
+    This parameter is mandatory.
+    A valid config.xml file
+
+SEE MORE L<https://code.google.com/p/bigbluebutton/wiki/API#setConfigXML>
+
+=cut
+
 sub setconfigxml {
     my ( $self, %params ) = @_;
 
     my $data = $self->_generate_data( 'setConfigXML', \%params );
     return $self->abstract_request( $data );
 }
+
+=item B<generate_checksum($self,$request,$params)>
+
+Create a checksum for the query
+
+$request
+
+    Name of query, e.g. 'create' or 'join'
+
+$params:
+
+    Query parameters
+
+    my $chksum = $self->generate_checksum( 'create', \%params );
+
+=cut
 
 sub generate_checksum {
     my ( $self, $request, $params ) = @_;
@@ -225,6 +406,20 @@ sub generate_checksum {
 
     return sha1_hex( $string );
 }
+
+=item B<generate_url_query($self,$params)>
+
+Creating a query string
+
+$params:
+
+    Query parameters
+
+    $params{checksum} = $self->generate_checksum( 'create', \%params );
+    $params{request}  = 'create';
+    my $url = $self->generate_url_query( \%params );
+
+=cut
 
 sub generate_url_query {
     my ( $self, $params ) = @_;
@@ -258,6 +453,18 @@ sub _check_params {
 }
 
 =back
+
+=head1 SEE ALSO
+
+L<API::BigBlueButton>
+
+L<API::BigBlueButton::Response>
+
+L<BigBlueButton API|https://code.google.com/p/bigbluebutton/wiki/API>
+
+=head1 AUTHOR
+
+Alexander Ruzhnikov E<lt>a.ruzhnikov@reg.ruE<gt>
 
 =cut
 

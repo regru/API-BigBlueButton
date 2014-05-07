@@ -124,9 +124,18 @@ sub request {
 
 __END__
 
+=head1 SEE ALSO
+
+L<API::BigBlueButton::Requests>
+
+L<API::BigBlueButton::Response>
+
+L<https://code.google.com/p/bigbluebutton/wiki/API>
+
 =head1 AUTHOR
 
-Alexander Ruzhnikov E<lt>ruzhnikov85@gmail.comE<gt>
+Alexander Ruzhnikov E<lt>a.ruzhnikov@reg.ruE<gt>
+
+=back
 
 =cut
-

@@ -71,7 +71,7 @@
          "web" : "https://github.com/regru/API-BigBlueButton"
       }
    },
-   "version" : "0.012",
+   "version" : "0.013",
    "x_authority" : "cpan:BCDE",
    "x_contributors" : [
       "Alexander Ruzhnikov <ruzhnikov85@gmail.com>",

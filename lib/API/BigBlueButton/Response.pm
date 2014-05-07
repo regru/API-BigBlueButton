@@ -12,11 +12,11 @@ use warnings;
 
 use XML::Fast;
 
-our $VERSION = "0.012";
+our $VERSION = "0.013";
 
 =head1 VERSION
  
-version 0.012
+version 0.013
 
 =cut
 

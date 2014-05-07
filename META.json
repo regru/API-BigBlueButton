@@ -1,12 +1,12 @@
 {
-   "abstract" : "It's API for BBB",
+   "abstract" : "client for BigBlueButton API",
    "author" : [
       "Alexander Ruzhnikov <a.ruzhnikov@reg.ru>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.13.0, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Minilla/v0.15.2, CPAN::Meta::Converter version 2.131560",
    "license" : [
-      "GPLv1"
+      "gpl_1"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -30,23 +30,26 @@
          "requires" : {
             "CPAN::Meta" : "0",
             "CPAN::Meta::Prereqs" : "0",
-            "Module::Build" : "0.38",
-            "LWP::UserAgent" : "6.05",
-            "Carp" : "0",
-            "Digest::SHA1" : "0",
-            "XML::Fast" : "0"
+            "Module::Build" : "0.38"
          }
       },
       "develop" : {
          "requires" : {
             "Test::CPAN::Meta" : "0",
             "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
             "Test::Pod" : "1.41",
             "Test::Spellunker" : "v0.2.7"
          }
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
+            "Digest::SHA1" : "0",
+            "LWP::UserAgent" : "6.05",
+            "XML::Fast" : "0",
+            "base" : "0",
+            "constant" : "0",
             "perl" : "5.008008"
          }
       },
@@ -57,5 +60,16 @@
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01"
+   "resources" : {
+      "repository" : {
+         "type" : "git",
+         "url" : "git://git.reg.ru/oss/api-bigbluebutton.git"
+      }
+   },
+   "version" : "0.01",
+   "x_authority" : "cpan:BCDE",
+   "x_contributors" : [
+      "Alexander Ruzhnikov <ruzhnikov85@gmail.com>",
+      "Alexander Ruzhnikov <a.ruznikov@reg.ru>"
+   ]
 }

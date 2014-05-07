@@ -22,7 +22,7 @@ API::BigBlueButton
 
 =head1 DESCRIPTION
 
-API client for BBB
+client for BigBlueButton API
 
 =cut
 

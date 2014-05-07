@@ -18,14 +18,43 @@ API::BigBlueButton
 
 # DESCRIPTION
 
-API::BigBlueButton is module for work with API BBB
+client for BigBlueButton API
 
-# LICENSE AND COPYRIGHT
+# VERSION
 
-This software is copyright (c) 2014 by REG.RU LLC.
+version 0.01
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+# METHODS
+
+- **new(%param)**
+
+    Constructor
+
+    %param:
+
+    server
+
+        Ip-address or hostname in which the server is located. Required parameter.
+
+    secret
+
+        Shared secret. Required parameter.
+
+    timeout
+
+        Connection timeout. Optional parameter.
+
+    use\_https
+
+        Use/not use https. Optional parameter.
+
+# SEE ALSO
+
+[API::BigBlueButton::Requests](https://metacpan.org/pod/API::BigBlueButton::Requests)
+
+[API::BigBlueButton::Response](https://metacpan.org/pod/API::BigBlueButton::Response)
+
+[BigBlueButton API](https://code.google.com/p/bigbluebutton/wiki/API)
 
 # AUTHOR
 

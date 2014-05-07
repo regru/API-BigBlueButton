@@ -3,7 +3,7 @@
 # DO NOT EDIT DIRECTLY.
 # =========================================================================
 
-use 5.008_008;
+use 5.008_001;
 
 use strict;
 use warnings;
@@ -34,7 +34,7 @@ my %args = (
     test_files           => ((-d '.git' || $ENV{RELEASE_TESTING}) && -d 'xt') ? 't/ xt/' : 't/',
     recursive_test_files => 1,
 
-    
+
 );
 if (-d 'share') {
     $args{share_dir} = 'share';

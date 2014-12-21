@@ -8,5 +8,6 @@ requires 'XML::Fast', '0';
 
 on 'test' => sub {
     requires 'Test::More', '0.98';
+    requires 'Test::Spec', '0';
 };
 

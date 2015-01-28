@@ -2,6 +2,9 @@ Revision history for Perl extension API-BigBlueButton
 
 {{$NEXT}}
 
+    - description of additional dependencies
+    - added new tests
+
 0.013 2014-05-07T16:13:27Z
 
     - small fix in synopsis

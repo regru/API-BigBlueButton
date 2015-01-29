@@ -4,7 +4,7 @@
       "Alexander Ruzhnikov <a.ruzhnikov@reg.ru>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.15.2, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Minilla/v2.3.0, CPAN::Meta::Converter version 2.133380",
    "license" : [
       "gpl_1"
    ],
@@ -28,8 +28,6 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "CPAN::Meta" : "0",
-            "CPAN::Meta::Prereqs" : "0",
             "Module::Build" : "0.38"
          }
       },
@@ -55,26 +53,28 @@
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0.98"
+            "FindBin" : "0",
+            "Test::More" : "0.98",
+            "Test::Spec" : "0"
          }
       }
    },
    "release_status" : "unstable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/regru/API-BigBlueButton/issues"
+         "web" : "https://github.com/ruzhnikov/API-BigBlueButton/issues"
       },
-      "homepage" : "https://github.com/regru/API-BigBlueButton",
+      "homepage" : "https://github.com/ruzhnikov/API-BigBlueButton",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/regru/API-BigBlueButton.git",
-         "web" : "https://github.com/regru/API-BigBlueButton"
+         "url" : "git://github.com/ruzhnikov/API-BigBlueButton.git",
+         "web" : "https://github.com/ruzhnikov/API-BigBlueButton"
       }
    },
-   "version" : "0.013",
+   "version" : "0.014",
    "x_authority" : "cpan:BCDE",
    "x_contributors" : [
-      "Alexander Ruzhnikov <ruzhnikov85@gmail.com>",
-      "Alexander Ruzhnikov <a.ruznikov@reg.ru>"
+      "Alexander Ruzhnikov <a.ruznikov@reg.ru>",
+      "Alexander Ruzhnikov <ruzhnikov85@gmail.com>"
    ]
 }

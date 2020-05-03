@@ -12,6 +12,7 @@ use warnings;
 
 use Digest::SHA1 qw/ sha1_hex /;
 use Carp qw/ confess /;
+use URI::Escape ;
 
 use constant {
     REQUIRE_CREATE_PARAMS => [ qw/ meetingID / ],
@@ -424,7 +425,7 @@ $params:
 sub generate_url_query {
     my ( $self, $params ) = @_;
 
-    my $string = CORE::join( '&', map { "$_=$params->{$_}" } sort keys %{ $params } );
+    my $string = CORE::join( '&', map { my $val = uri_escape ($params->{$_}); "$_=$val" } sort keys %{ $params } );
 
     return $string;
 }

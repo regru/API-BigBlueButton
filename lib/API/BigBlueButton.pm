@@ -31,7 +31,7 @@ use strict;
 use warnings;
 
 use Carp qw/ confess /;
-use LWP::UserAgent '6.05';
+use LWP::UserAgent;
 
 use API::BigBlueButton::Response;
 

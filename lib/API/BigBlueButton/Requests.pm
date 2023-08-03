@@ -24,11 +24,11 @@ use constant {
     REQUIRE_SETCONFIGXML_PARAMS      => [ qw/ meetingID configXML / ],
 };
 
-our $VERSION = "0.014";
+our $VERSION = "0.015";
 
 =head1 VERSION
  
-version 0.014
+version 0.015
 
 =cut
 

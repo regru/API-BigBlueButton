@@ -39,11 +39,11 @@ use base qw/ API::BigBlueButton::Requests /;
 
 use constant REQUIRE_PARAMS => qw/ secret server /;
 
-our $VERSION = "0.014";
+our $VERSION = "0.015";
 
 =head1 VERSION
  
-version 0.014
+version 0.015
 
 =cut
 
